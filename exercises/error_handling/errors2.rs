@@ -16,17 +16,37 @@
 // There are at least two ways to implement this that are both correct-- but
 // one is a lot shorter! Execute `rustlings hint errors2` for hints to both ways.
 
-// I AM NOT DONE
+// DONE
 
 use std::num::ParseIntError;
 
 pub fn total_cost(item_quantity: &str) -> Result<i32, ParseIntError> {
     let processing_fee = 1;
     let cost_per_item = 5;
-    let qty = item_quantity.parse::<i32>();
-
+    
+    //First solution is this, to try and unwrap, if error, returns immediately
+    let qty = item_quantity.parse::<i32>()?;
+    
     Ok(qty * cost_per_item + processing_fee)
+
 }
+
+/*
+//2nd solution: use match (fail). I can't re-crate a ParseIntError.
+
+pub fn total_cost(item_quantity: &str) -> Result<i32, ParseIntError> {
+    let processing_fee = 1;
+    let cost_per_item = 5;
+
+    let qty = item_quantity.parse::<i32>(); 
+    let qty = match qty {
+        Ok(qty) => Ok(qty * cost_per_item + processing_fee),
+        Err(qty) => Err("invalid digit found in string")
+    };
+    qty
+     
+}
+*/
 
 #[cfg(test)]
 mod tests {

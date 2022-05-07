@@ -1,7 +1,7 @@
 // modules1.rs
 // Make me compile! Execute `rustlings hint modules1` for hints :)
 
-// I AM NOT DONE
+// DONE
 
 mod sausage_factory {
     // Don't let anybody outside of this module see this!
@@ -9,7 +9,8 @@ mod sausage_factory {
         String::from("Ginger")
     }
 
-    fn make_sausage() {
+    //we only want to expose this
+    pub fn make_sausage() {
         get_secret_recipe();
         println!("sausage!");
     }
